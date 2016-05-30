@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Music list with Handlebars+Events+Wiggle</title>
+    <style>
+        @keyframes wiggleAnimation {
+            0%  { transform: skewX(9deg); }
+            10% { transform: skewX(-8deg); }
+            20% { transform: skewX(7deg); }
+            30% { transform: skewX(-6deg); }
+            40% { transform: skewX(5deg); }
+            50% { transform: skewX(-4deg); }
+            60% { transform: skewX(3deg); }
+            70% { transform: skewX(-2deg); }
+            80% { transform: skewX(1deg); }
+            90% { transform: skewX(0deg); }
+            100% { transform: skewX(0deg); }
+        }
+
+        @-webkit-keyframes wiggleAnimation {
+            0% { -webkit-transform: skewX(9deg); }
+            10% { -webkit-transform: skewX(-8deg); }
+            20% { -webkit-transform: skewX(7deg); }
+            30% { -webkit-transform: skewX(-6deg); }
+            40% { -webkit-transform: skewX(5deg); }
+            50% { -webkit-transform: skewX(-4deg); }
+            60% { -webkit-transform: skewX(3deg); }
+            70% { -webkit-transform: skewX(-2deg); }
+            80% { -webkit-transform: skewX(1deg); }
+            90% { -webkit-transform: skewX(0deg); }
+            100% { -webkit-transform: skewX(0deg); }
+        }
+
+        .wiggle {
+            animation-name: wiggleAnimation;
+            -webkit-animation-name: wiggleAnimation;
+            animation-duration: 1s;
+            -webkit-animation-duration: 1s;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Songs</h1>
+<ul id="songs"></ul>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script id="songs-template" type="text/x-handlebars-template">
+    {{#each this}}
+    <li id="song-{{this.id}}">
+        <h3>{{this.rating}}
+            (<button onclick="rateSong({{this.id}}, 1)">+</button>
+             <button onclick="rateSong({{this.id}}, -1)">-</button>)
+            {{this.title}}
+        </h3>
+        <p>{{this.artist}}</p>
+    </li>
+    {{/each}}
+</script>
+<script>
+    var songs = [
+        {"id":"01", "title":"Thank you for the music", "artist":"ABBA", "rating":3},
+        {"id":"02", "title":"California Girls", "artist":"Beach Boys", "rating":2},
+        {"id":"03", "title":"How Deep Is Your Love", "artist":"Bee Gees", "rating":1},
+        {"id":"04", "title":"Sweet Sixteen", "artist":"Chuck Berry", "rating":0},
+        {"id":"05", "title":"Roll Over Beethoven", "artist":"Electric Light Orchestra", "rating":0},
+        {"id":"06", "title":"Booze and Blues", "artist":"Ma Rainey", "rating":0},
+        {"id":"07", "title":"Beds Are Burning", "artist":"Diesel and Dust", "rating":0}
+    ];
+    function compareSongs(s1, s2) {
+        return s2.rating - s1.rating;
+    }
+    function findSong(id) {
+        var foundSong;
+        songs.some(function (song) {
+            if (song.id == id) {
+                foundSong = song;
+                return true;
+            }
+        });
+        return foundSong;
+    }
+    function getSongIndex(id) {
+        //could be replaced with use of Array.prototype.some
+        for (var i = 0; i < songs.length; i++) {
+            if (songs[i].id == id) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    function rateSong (songId, delta) {
+        var song = findSong(songId);
+        var songIndex = getSongIndex(songId);
+        song.rating += delta;
+        renderSongs();
+        //if (songIndex != getSongIndex(songId)) {
+        //better because no linear search is needed
+        if (songs[songIndex] != song) {
+            //position changed
+            document.getElementById("song-"+song.id).classList.add('wiggle');
+        }
+    }
+    var createSongsHtml = Handlebars.compile(document.getElementById("songs-template").textContent);
+    function renderSongs () {
+        document.getElementById("songs").innerHTML=createSongsHtml(songs.sort(compareSongs));
+    }
+    window.onload = renderSongs;
+</script>
+</body>
+</html>
