@@ -1,5 +1,7 @@
 counter = 999;
-var object = { counter:3 , foo : function(){ console.log( this.counter )}};
+var object = { counter:3 , foo : function(){
+    console.log( this.counter )
+}};
 var object2 = {counter : 100};
 var foo = object.foo;
 
@@ -17,4 +19,6 @@ newFoo.apply({counter : 12});
 //advanced
 new foo();
 new newFoo();
+
+console.log(typeof global);
 

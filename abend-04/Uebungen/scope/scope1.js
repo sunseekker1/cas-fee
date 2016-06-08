@@ -1,5 +1,7 @@
 var globalObject = typeof(global) === "undefined" ? window : global; // browser oder node js
 
+console.log(typeof(global));
+
 var a = 0;
 b = 0;
 function scope()
@@ -17,5 +19,5 @@ function scope()
     console.log(2, a, b, c);
 }
 scope();
-console.log(3, a, b, c);
+//console.log(3, a, b, c);
 console.log(4, globalObject.a, globalObject.b, globalObject.c);
