@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSDemo0</title>
+    <script>
+        //global Var
+        var ARRAY1 = [1, 'hallo', true, [2, 4, 7], function() {return 'kkk'}, {name: 'm'}];
+
+        //also global var
+        window.ARRY2 = [3, 4, 5];
+
+        var G3 = ARRAY1.forEach(function(item) {console.log(item)}); // directly executed
+
+        var G4 = "Hallo";
+
+        function fun1 (par1) {
+            var a3 = [1, 2, 3];
+            console.log(a3, par1)
+        }
+        fun1(G3);
+
+        function printIndexable1 (indexable) {
+            for (var i=0; i<indexable.length; i++) {
+                console.log(indexable[i]);
+            }
+        }
+        printIndexable1(ARRAY1);
+        printIndexable1(G4);
+        printIndexable1(5);
+
+        function lexicalScopeDemo1 (par1) {
+            console.log("entered lexicalScopeDemo1");
+            var localVar1 = 1;
+            var localVar2 = 1;
+            console.log(par1, localVar1);
+            lexicalScopeDemo2(2);
+        }
+        function lexicalScopeDemo2 (par1) {
+            console.log("entered lexicalScopeDemo2");
+            var localVar1 = 2;
+            console.log(par1, localVar1);
+            // followng line error if uncommented
+            //console.log(localVar2);
+        }
+        lexicalScopeDemo1(1);
+
+        function keepConstantValClosureDemo(constant){
+            return function() {return constant};
+        }
+        var CONSTANT5 = keepConstantValClosureDemo(5);
+        console.log("CONSTANT5()=", CONSTANT5());
+
+        var OBJ1 = {name:  'markus', age: 53, incAge: function () {this.age+=1} };
+        console.log("OBJ1=", OBJ1);
+        OBJ1.incAge();
+        console.log("OBJ1=", OBJ1);
+        OBJ1.nnname="Peter";
+        console.log("OBJ1=", OBJ1);
+        OBJ1.age="55";
+        console.log("OBJ1=", OBJ1);
+        OBJ1.incAge();
+        console.log("OBJ1=", OBJ1);
+
+        // CHaining
+
+        var OBJ2 = {name:  'markus', hund: {
+            name: "wulfi",
+            age: 4,
+            status: "hungry",
+            incAge: function () {this.age+=1; return this} ,
+            feed:   function () {
+                this.status="happy";
+                var self = this;
+                setTimeout(function() {self.status = "hungry"}, 2000);
+                return this; }}}
+
+        console.log("OBJ2.hund.incAge().feed().status=", OBJ2.hund.incAge().feed().status);
+        console.log("OBJ2.hund.status=", OBJ2.hund.status);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
