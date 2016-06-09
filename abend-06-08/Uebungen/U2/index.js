@@ -1,7 +1,5 @@
-var fileHandler = require('./file.js');
-fileHandler.file("test.txt", 'Hello World!',
-    function(err, content) {
-        if (err) console.log(err);
-        console.log(content)
-    }
-);
+var fileModule = require('./file.js');
+
+fileModule.write("test.txt", 'File Content 333');
+fileModule.read("test.txt");
+fileModule.remove('test.txt');

@@ -16,6 +16,7 @@ function read(name){
             return console.log(err);
         }
         console.log("read(): ", data);
+        return data;
     });
 }
 

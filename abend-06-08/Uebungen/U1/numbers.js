@@ -1,10 +1,16 @@
-module.exports = function(start, end) {
-    var count = start;
-    function solution1b() {
-        console.log(count);
-        count = count + 1;
-        if (count > end) { return; }
-        solution1b();
+function numbers(start, end){
+    var startCount = start;
+
+    function output(startCount, end){
+        if (startCount < end){
+            console.log(startCount);
+            startCount += 1;
+            output(startCount, end);
+        }
     }
-    solution1b();
-};
+
+    output(startCount, end);
+
+}
+
+module.exports = { showNumbers : numbers};
