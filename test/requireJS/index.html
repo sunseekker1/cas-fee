@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>requireJS Test</title>
+</head>
+<body>
+
+
+<script data-main="js/config" src="lib/require.js"></script>
+<script>
+    require(['config'], function (){
+        require(['main']);
+    });
+</script>
+</body>
+</html>
