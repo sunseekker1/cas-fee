@@ -1,3 +1,3 @@
-define(['jquery', 'methods'], function ($, methods){
+require(['jquery', 'methods'], function ($, methods){
     methods.printText('Sepp was here');
 });
