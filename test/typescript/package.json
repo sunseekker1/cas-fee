@@ -1,0 +1,13 @@
+{
+  "name": "typescript-compiler-test",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc"
+  },
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

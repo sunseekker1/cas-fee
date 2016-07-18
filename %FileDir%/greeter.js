@@ -6,9 +6,10 @@ var Student = (function () {
         this.fullName = firstName + " " + middleInitial + " " + lastName;
     }
     return Student;
-}());
+})();
 function greeter(person) {
-    return "Hello again 12, " + person.firstName + " " + person.lastName;
+    return "Hello again 5, " + person.firstName + " " + person.lastName;
 }
 var user = new Student("Jane", "M.", "User Sepp");
 document.body.innerHTML = greeter(user);
+//# sourceMappingURL=greeter.js.map
