@@ -2,8 +2,7 @@
   "name": "typescript-compiler-test",
   "version": "1.0.0",
   "scripts": {
-    "build": "tsc",
-    "start": "tsc"
+    "transpile": "tsc"
   },
   "license": "ISC",
   "dependencies": {

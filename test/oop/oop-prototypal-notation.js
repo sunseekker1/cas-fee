@@ -2,9 +2,11 @@
 var Person = function (name){
     this.name = name;
 };
+
 Person.prototype.sayName = function (){
     console.log("Person.sayName(): ", this.name);
 };
+
 Person.prototype.shoutName = function (){
     console.log("Person.shoutName(): ", this.name);
 };
@@ -18,10 +20,12 @@ var Musician = function (name, instrument, age){
 };
 Musician.prototype = Object.create(Person.prototype); // extend class Person
 Musician.prototype.constructor = Musician; // extend class Person // braucht es diesen Code?
+
 Musician.prototype.shoutName = function (){
     //Person.prototype.sayName.call(this);
     console.log("Musician.shoutName(): ", this.name);
 };
+
 Musician.prototype.getInstrument = function (){
     console.log("Musician.getInstrument()", this.instrument);
 };
