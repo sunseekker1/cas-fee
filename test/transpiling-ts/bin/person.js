@@ -15,13 +15,13 @@ var Person = (function () {
         console.log("Person.shoutName(): ", this.name);
     };
     return Person;
-})();
+}());
 var Musician = (function (_super) {
     __extends(Musician, _super);
     function Musician(name, instrument, age) {
         _super.call(this, name);
         this.instrument = instrument;
-        this._age = age;
+        this.age = age;
     }
     Musician.prototype.getInstrument = function () {
         console.log("Musician.getInstrument()", this.instrument);
@@ -30,13 +30,10 @@ var Musician = (function (_super) {
         console.log("Musician.shoutName()", this.name);
     };
     Musician.prototype.getAge = function () {
-        this._getAge();
-    };
-    Musician.prototype._getAge = function () {
-        console.log("Musician.privateGetAge()", this._age);
+        console.log("Musician.getAge()", this.age);
     };
     return Musician;
-})(Person);
+}(Person));
 // create intances
 var john = new Person("John Person");
 var bobby = new Person("Bobby Person");
@@ -48,4 +45,6 @@ luke.sayName();
 luke.shoutName();
 luke.getInstrument();
 luke.getAge();
+luke.instrument = "violin";
+luke.shoutName();
 //# sourceMappingURL=person.js.map

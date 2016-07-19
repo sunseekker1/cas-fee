@@ -19,12 +19,12 @@ class Person {
 
 class Musician extends Person {
     public instrument: string;
-    private _age: number;
+    private age: number;
 
     constructor(name: string, instrument: string, age: number) {
         super(name);
         this.instrument = instrument;
-        this._age = age;
+        this.age = age;
     }
 
     public getInstrument(){
@@ -35,26 +35,29 @@ class Musician extends Person {
         console.log("Musician.shoutName()", this.name);
     }
 
-    public getAge(){
-        this._getAge();
-    }
 
-    private _getAge(){
-        console.log("Musician.privateGetAge()", this._age);
+    public getAge(){
+        console.log("Musician.getAge()", this.age);
     }
 }
 
 
 // create intances
-let john2 = new Person("John Person");
+let john = new Person("John Person");
 let bobby = new Person("Bobby Person");
 let luke = new Musician("Luke Musician", "Guitar", 39);
 
+
+
 // call functions
-john2.sayName();
+john.sayName();
 bobby.shoutName();
 luke.sayName();
 luke.shoutName();
 luke.getInstrument();
 luke.getAge();
+
+
+luke.instrument = "violin";
+luke.shoutName();
 
