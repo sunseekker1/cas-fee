@@ -1,0 +1,26 @@
+$errorColor: firebrick;
+$successColor: olivedrab;
+$infoColor: lightblue;
+
+
+.link{
+  &.var_error {
+    color: $errorColor;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  &.var_success{
+    color: $successColor;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  &.var_info {
+    color: $infoColor;
+  }
+
+  &.var_organic {
+    color: tomato;
+  }
+
+
+}
